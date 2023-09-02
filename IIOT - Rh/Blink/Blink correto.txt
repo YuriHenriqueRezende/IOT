@@ -1,0 +1,18 @@
+
+const int led_pin =2;
+
+void setup() {
+  //a função de configuração é executada uma vez quando 
+  //voce pressiona reset ou liga a placa
+  pinMode(led_pin,OUTPUT);
+  
+}
+
+void loop() {
+  // a função de loop é executada repetidamente para sempre
+  digitalWrite(led_pin,HIGH);
+  delay(1000);
+  digitalWrite(led_pin,LOW);
+  delay(1000);
+
+}
