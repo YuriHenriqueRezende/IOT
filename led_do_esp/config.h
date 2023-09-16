@@ -2,8 +2,8 @@
 #define IO_USERNAME "yurirezende32"
 #define IO_KEY "aio_wnVt16klriDVTY7jygm62jfbUaPZ"
 
-#define WIFI_SSID "Lenovo"
-#define WIFI_PASS "30381490"
+#define WIFI_SSID "yuri"
+#define WIFI_PASS "123456789"
 
 #include "AdafruitIO_WiFi.h"
 
