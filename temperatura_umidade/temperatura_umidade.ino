@@ -1,12 +1,22 @@
-#include <Wifi.h>
+#include <WiFi.h>
+#include <WiFiAP.h>
+#include <WiFiClient.h>
+#include <WiFiGeneric.h>
+#include <WiFiMulti.h>
+#include <WiFiSTA.h>
+#include <WiFiScan.h>
+#include <WiFiServer.h>
+#include <WiFiType.h>
+#include <WiFiUdp.h>
+
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
 #define DHTPIN 4
-#define DHTTYPE HT22
+#define DHTTYPE DHT22
 #define MSG_BUFFER_SIZE (50)
 char msg[MSG_BUFFER_SIZE];
-DHT_Unifed dht(DHTPIN, DHTTYPE);
+DHT_Unified dht(DHTPIN, DHTTYPE);
 uint32_t delayMS;
 unsigned long lasMsg = 0;
 int value = 0;
@@ -19,7 +29,7 @@ void setup() {
   dht.begin();
   Serial.print(F("Sensor DHT22"));
   sensor_t sensor;
-  dht.temperature(.getSensor(&sensor));
+  dht.temperature().getSensor(&sensor);
   Serial.println(F("-----------------------------------------------------------"));
   Serial.println(F("Temperatura"));
   Serial.print(F("Sensor"));
@@ -35,7 +45,7 @@ void setup() {
   Serial.println(F("°C"));
   Serial.println(F("-----------------------------------------------------------"));
 
-  dht.humidity(.getSensor(&sensor));
+  dht.humidity().getSensor(&sensor);
   Serial.println(F("-----------------------------------------------------------"));
   Serial.println(F("Umidade"));
   Serial.print(F("Sensor"));
@@ -64,6 +74,7 @@ void loop() {
     Serial.print(event.temperature);
     Serial.println(F("°C"));
     sprintf(msg,"%f",event.temperature);
+    delay(1000);
   }
 
   dht.humidity().getEvent(&event);
@@ -75,6 +86,46 @@ void loop() {
     Serial.print(event.relative_humidity);
     Serial.println(F("%"));
     sprintf(msg,"%f",event.relative_humidity);
+    delay(1000);
+
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
