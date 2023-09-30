@@ -8,7 +8,7 @@
 #include <WiFiServer.h>
 #include <WiFiType.h>
 #include <WiFiUdp.h>
-
+#include "config.h"
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
