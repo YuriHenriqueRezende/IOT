@@ -22,8 +22,6 @@ unsigned long lasMsg = 0;
 int value = 0;
 
 
-
-
 void setup() {
   Serial.begin(115200);
   dht.begin();
