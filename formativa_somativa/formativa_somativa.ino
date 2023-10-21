@@ -76,7 +76,15 @@ void loop() {
     Serial.print(data.temperature);
     Serial.println(F("°C"));
     sprintf(msg, "%f", data.temperature);
-    client.publish("c", msg);
+    client.publish("yuri/temperature", msg);
+
+    if(data.temperature > 22) {
+      sprintf(msg, "%i", 1);
+      client.publish("yuri/ligadotemp", msg);
+    } else {
+      sprintf(msg, "%i", 0);
+      client.publish("yuri/ligadotemp", msg);
+    }
   }
   if (isnan(data.humidity)){
     Serial.println(F(" ERRO NA LEITURA DA HUMIDADE"));
@@ -86,6 +94,14 @@ void loop() {
     Serial.println(F("%"));
     sprintf(msg, "%f", data.humidity);
     client.publish("yuri/humidity", msg);
+    
+    if(data.humidity > 50) {
+      sprintf(msg, "%i", 1);
+      client.publish("yuri/ligar", msg);
+    } else {
+      sprintf(msg, "%i", 0);
+      client.publish("yuri/ligar", msg);  
+    }
   }
   delay(2000);
   if(data.temperature >= 22){
@@ -95,6 +111,18 @@ void loop() {
     digitalWrite(RELE_PIN, LOW);
     delay(5000);
   }
+
+  if(data.temperature >= 22){
+    digitalWrite(RELE_PIN, HIGH);
+    delay(5000);
+  } else {
+    digitalWrite(RELE_PIN, LOW);
+    delay(5000);
+  }
+
+
+
+
 
   if (!client.connected()) {
     reconnect();
